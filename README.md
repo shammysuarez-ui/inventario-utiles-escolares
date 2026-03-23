@@ -76,3 +76,13 @@ http://127.0.0.1:5000/
 ## 💡 Notas
 
 Este proyecto fue desarrollado como práctica para mejorar habilidades en desarrollo web con Flask.
+
+## ▶️ Cómo ejecutar el proyecto
+
+Este proyecto es una aplicación web local. Para visualizar la interfaz:
+
+1. Ejecutar:
+   python app.py
+
+2. Abrir en el navegador:
+   http://127.0.0.1:5000/
