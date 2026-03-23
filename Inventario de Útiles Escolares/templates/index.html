@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventario Útiles Escolares</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f6f8;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #219150;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ecf0f1;
+        }
+
+        .btn-edit {
+            background-color: #f39c12;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+        }
+
+        /* 🔥 FILA DEL TOTAL */
+        .total-row {
+            background-color: #dfe6e9;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>📚 Inventario de Útiles Escolares</h1>
+
+<form method="POST">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="number" name="cantidad" placeholder="Cantidad" required>
+    <input type="number" step="0.01" name="precio" placeholder="Precio" required>
+    <button type="submit">Agregar</button>
+</form>
+
+<h2>Lista de productos</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for p in productos %}
+    <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.cantidad }}</td>
+        <td>${{ "%.2f"|format(p.precio) }}</td>
+        <td>
+            <a href="/editar/{{ p.id }}"><button class="btn-edit">Editar</button></a>
+            <a href="/eliminar/{{ p.id }}"><button class="btn-delete">Eliminar</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+
+    <!-- 🔥 TOTAL INVENTARIO -->
+    <tr class="total-row">
+        <td colspan="3">Total Inventario</td>
+        <td colspan="2">${{ "%.2f"|format(total) }}</td>
+    </tr>
+
+</table>
+
+</body>
+</html>
